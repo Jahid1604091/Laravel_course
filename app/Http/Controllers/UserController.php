@@ -14,30 +14,55 @@ class UserController extends Controller
         return $users;
     }
 
+
     public function show($id)
     {
         return User::find($id);
     }
 
-    public function create()
+    public function showIdName($id,$name)
     {
-        
-        $data = [
-            "name"=>"Jahid Hasan",
-            "email"=>"jh@gmail.com",
-            "password"=>"123456"
-        ];
-
-        //create a field inside database
-        User::create($data);
-        return "Created a new user !";
+        return $id." ".$name;
+    }
+    public function showIdName2($id,$name='jahid')
+    {
+        return $id." ".$name;
     }
 
-
-    public function delete($id)
+    public function create()
     {
-        $user = User::findOrFail($id);
-        $user->delete();
+        //------process overview-----
+        // $data = [
+        //     "name"=>"Jahid Hasan",
+        //     "email"=>"jh@gmail.com",
+        //     "password"=>"123456"
+        // ];
+
+        // //create a field inside database
+        // User::create($data);
+        // return "Created a new user !";
+
+        //----process final------
+        return view('users.create');
+    }
+
+    public function store()
+    {
+        return "User stored";
+    }
+
+    //process - 1
+    // public function delete($id)
+    // {
+    //     $user = User::findOrFail($id);
+    //     $user->delete();
+    //     return "deleted user!";
+    // }
+
+    //--final process
+    public function delete()
+    {
+       
         return "deleted user!";
     }
 
@@ -47,5 +72,24 @@ class UserController extends Controller
         $user->name = "New name";
         $user->save();
         return "User Edited";
+    }
+
+    //---process final---
+    public function update ()
+    {
+       
+        return "User Updated";
+    }
+
+    //---process final---
+    public function updateUsername ()
+    {
+       
+        return "User name Updated";
+    }
+
+    public function any()
+    {
+        return "I am from any";
     }
 }
