@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -61,3 +62,9 @@ Route::prefix('/admin')->group(function(){
         return "Edit Admin";
     });
 });
+
+
+
+Route::get('create-customer',[CustomerController::class,'create']);
+Route::get('customers',[CustomerController::class,'index']);
+Route::get('first-customer',[CustomerController::class,'firstVal']);
