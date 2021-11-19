@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 ///////////////////////////////////////
@@ -68,3 +70,15 @@ Route::prefix('/admin')->group(function(){
 Route::get('create-customer',[CustomerController::class,'create']);
 Route::get('customers',[CustomerController::class,'index']);
 Route::get('first-customer',[CustomerController::class,'firstVal']);
+
+
+
+Route::get('create_post',[PostController::class,'create']);
+Route::get('create_post2',[PostController::class,'create2']);
+Route::get('posts',[PostController::class,'index']);
+Route::get('update_post/{id}',[PostController::class,'updatePost']);
+Route::get('delete_post/{id}',[PostController::class,'delete']);
+
+Route::get('one2one',[UserController::class,'one2one']);
+Route::get('one2one-inverse',[AddressController::class,'index']);
+Route::get('one2Many',[UserController::class,'one2Many']);

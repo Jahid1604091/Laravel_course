@@ -92,4 +92,24 @@ class UserController extends Controller
     {
         return "I am from any";
     }
+
+    public function one2one()
+    {
+        $user = User::findOrFail(1);
+        // return $user->name;
+        // return $user->address; //address is defined inside User Model
+        return $user->address->address; 
+    }
+
+    public function one2Many()
+    {
+        $user = User::findOrFail(1);
+        // return $user->posts;
+        // return $user->posts[0]->title;
+
+        foreach($user->posts as $post){
+            echo $post->title." </br>";
+        }
+
+    }
 }
