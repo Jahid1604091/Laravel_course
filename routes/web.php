@@ -97,3 +97,26 @@ Route::get('posts',function(){
     $posts = Post::take(3)->get();
     return view('post.index',['posts'=>$posts]);
 });
+
+
+/////////////////////
+//// Middleware/////
+////////////////////
+
+Route::get('one',function(){
+    return 'First page';
+})->middleware('test');
+
+// Route::get('second',function(){
+//     return 'Second page';
+// });
+
+Route::middleware('test')->group(function () {
+    Route::get('second',function(){
+        return 'Second page';
+    });
+    Route::get('third',function(){
+        return 'third page';
+    });
+    
+});
