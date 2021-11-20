@@ -89,34 +89,42 @@ use Illuminate\Support\Facades\Route;
 // blade template///
 ////////////////////
 
-Route::get('users',function(){
-    return view('users.index');
-});
-Route::get('posts',function(){
-    // $posts = Post::all();
-    $posts = Post::take(3)->get();
-    return view('post.index',['posts'=>$posts]);
-});
+// Route::get('users',function(){
+//     return view('users.index');
+// });
+// Route::get('posts',function(){
+//     // $posts = Post::all();
+//     $posts = Post::take(3)->get();
+//     return view('post.index',['posts'=>$posts]);
+// });
 
 
 /////////////////////
 //// Middleware/////
 ////////////////////
 
-Route::get('one',function(){
-    return 'First page';
-})->middleware('test');
+// Route::get('one',function(){
+//     return 'First page';
+// })->middleware('test');
 
 // Route::get('second',function(){
 //     return 'Second page';
 // });
 
-Route::middleware('test')->group(function () {
-    Route::get('second',function(){
-        return 'Second page';
-    });
-    Route::get('third',function(){
-        return 'third page';
-    });
+// Route::middleware('test')->group(function () {
+//     Route::get('second',function(){
+//         return 'Second page';
+//     });
+//     Route::get('third',function(){
+//         return 'third page';
+//     });
     
-});
+// });
+
+
+/////////////////////////////////////
+//// Request and Form Validation/////
+/////////////////////////////////////
+
+Route::get('add-user',[UserController::class,'addUser']);
+Route::post('store',[UserController::class,'storeUser']);

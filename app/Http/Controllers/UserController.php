@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CustomRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -111,5 +112,27 @@ class UserController extends Controller
             echo $post->title." </br>";
         }
 
+    }
+
+
+    public function addUser()
+    {
+        return view('users.addForm');
+    }
+
+    public function storeUser(CustomRequest $req)
+    {
+        // return $req->path();
+        // return $req->method();
+        // return $req->input('email');
+        // $temp =  $req->input('name','John Doe');
+        // $data = $req->all();
+        // $data = $req->validate([
+        //     'name' =>'required|string|max:3',
+        // ]);
+        // return $data;
+
+        return $req->all();
+        
     }
 }
