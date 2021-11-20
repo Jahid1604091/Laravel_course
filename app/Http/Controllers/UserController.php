@@ -115,9 +115,12 @@ class UserController extends Controller
     }
 
 
-    public function addUser()
-    {
+    public function addUser(Request $req)
+    {   
+        
         return view('users.addForm');
+        $req->session->put('name','Jahid Hasan');
+
     }
 
     public function storeUser(CustomRequest $req)
@@ -131,7 +134,7 @@ class UserController extends Controller
         //     'name' =>'required|string|max:3',
         // ]);
         // return $data;
-
+            echo $req->session()->get('name');
         return $req->all();
         
     }

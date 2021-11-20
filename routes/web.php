@@ -126,5 +126,11 @@ use Illuminate\Support\Facades\Route;
 //// Request and Form Validation/////
 /////////////////////////////////////
 
-Route::get('add-user',[UserController::class,'addUser']);
-Route::post('store',[UserController::class,'storeUser']);
+// Route::get('add-user',[UserController::class,'addUser']);
+// Route::post('store',[UserController::class,'storeUser']);
+
+
+/////////////////////////////////////
+//// Login, logout, registration/////
+/////////////////////////////////////
+
