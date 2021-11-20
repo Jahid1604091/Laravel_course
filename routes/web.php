@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 ///////////////////////////////////////
 //-------------- overview---------------
@@ -133,4 +135,22 @@ use Illuminate\Support\Facades\Route;
 /////////////////////////////////////
 //// Login, logout, registration/////
 /////////////////////////////////////
+Route::get('/',function(){
+    return Auth::user()->email;
+    return Auth::user();
+    return "Home Page";
+})->middleware('auth');
+Route::get('login',[LoginController::class,'index'])->name('login');
+Route::get('logout',[LoginController::class,'logout']);
+Route::post('login',[LoginController::class,'login']);
+Route::get('register',[LoginController::class,'register']);
+Route::post('register',[LoginController::class,'store']);
 
+Route::get('isLoggedIn', function () {
+    if(Auth::check()){
+        return "A logged in user found";
+    }
+    else{
+        return "Plz log in";
+    }
+});
