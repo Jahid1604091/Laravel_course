@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Models\Post;
@@ -87,6 +88,8 @@ use Illuminate\Support\Facades\Route;
 // Route::get('one2Many',[UserController::class,'one2Many']);
 
 
+
+
 /////////////////////
 // blade template///
 ////////////////////
@@ -99,6 +102,7 @@ use Illuminate\Support\Facades\Route;
 //     $posts = Post::take(3)->get();
 //     return view('post.index',['posts'=>$posts]);
 // });
+
 
 
 /////////////////////
@@ -124,6 +128,8 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
+
+
 /////////////////////////////////////
 //// Request and Form Validation/////
 /////////////////////////////////////
@@ -132,25 +138,38 @@ use Illuminate\Support\Facades\Route;
 // Route::post('store',[UserController::class,'storeUser']);
 
 
+
+
 /////////////////////////////////////
 //// Login, logout, registration/////
 /////////////////////////////////////
-Route::get('/',function(){
-    return Auth::user()->email;
-    return Auth::user();
-    return "Home Page";
-})->middleware('auth');
-Route::get('login',[LoginController::class,'index'])->name('login');
-Route::get('logout',[LoginController::class,'logout']);
-Route::post('login',[LoginController::class,'login']);
-Route::get('register',[LoginController::class,'register']);
-Route::post('register',[LoginController::class,'store']);
 
-Route::get('isLoggedIn', function () {
-    if(Auth::check()){
-        return "A logged in user found";
-    }
-    else{
-        return "Plz log in";
-    }
-});
+// Route::get('/',function(){
+//     return Auth::user()->email;
+//     return Auth::user();
+//     return "Home Page";
+// })->middleware('auth');
+// Route::get('login',[LoginController::class,'index'])->name('login');
+// Route::get('logout',[LoginController::class,'logout']);
+// Route::post('login',[LoginController::class,'login']);
+// Route::get('register',[LoginController::class,'register']);
+// Route::post('register',[LoginController::class,'store']);
+
+// Route::get('isLoggedIn', function () {
+//     if(Auth::check()){
+//         return "A logged in user found";
+//     }
+//     else{
+//         return "Plz log in";
+//     }
+// });
+
+
+
+///////////////////////
+//// File Storage /////
+///////////////////////
+Route::view('/file-upload','upload.image');
+Route::post('/file-upload',[ImageUploadController::class,'store']);
+Route::get('/files',[ImageUploadController::class,'showFiles']);
+Route::get('/delete-file',[ImageUploadController::class,'delete']);
